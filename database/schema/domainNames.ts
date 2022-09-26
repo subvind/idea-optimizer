@@ -1,5 +1,5 @@
 export default {
-  title: 'location schema',
+  title: 'domain name schema',
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -7,15 +7,13 @@ export default {
     id: {
       type: 'string',
     },
-    name: {
+    tld: {
       type: 'string'
     },
-    latitude: {
-      type: 'integer'
+    idea: {
+      ref: 'idea',
+      type: 'string'
     },
-    longitude: {
-      type: 'integer'
-    }
   },
-  required: ['id', 'name']
+  required: ['id', 'tld', 'idea']
 }

@@ -1,5 +1,5 @@
 export default {
-  title: 'professional schema',
+  title: 'user schema',
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -7,19 +7,22 @@ export default {
     id: {
       type: 'string',
     },
-    first: {
+    username: {
       type: 'string'
     },
-    last: {
+    email: {
       type: 'string'
     },
-    fleets: {
+    firebase: {
+      type: 'string'
+    },
+    clients: {
       type: 'array',
-      ref: 'fleet',
+      ref: 'client',
       items: {
         type: 'string'
       }
     }
   },
-  required: ['id', 'first', 'last']
+  required: ['id', 'username', 'email', 'firebase']
 }

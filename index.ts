@@ -1,8 +1,8 @@
-import { FleetOptimizer } from './lib/fleet-optimizer'
+import { IdeaOptimizer } from './lib/idea-optimizer'
 import * as database from './database/index'
 
 let result = {
-  FleetOptimizer: FleetOptimizer,
+  IdeaOptimizer: IdeaOptimizer,
   database: database
 }
 

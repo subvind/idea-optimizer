@@ -1,48 +1,80 @@
 
 import { createRxDatabase } from 'rxdb';
 
-import contactSchema from './schema/contacts'
-import customerSchema from './schema/customers'
-import estimateSchema from './schema/estimates'
-import fleetSchema from './schema/fleets'
-import invoiceSchema from './schema/invoices'
-import jobSchema from './schema/jobs'
-import locationSchema from './schema/locations'
-import professionalSchema from './schema/professionals'
-import vehicleSchema from './schema/vehicles'
-import workOrderSchema from './schema/workOrders'
+import accessKeys from './schema/accessKeys'
+import apps from './schema/apps'
+import chatbots from './schema/chatbots'
+import clients from './schema/clients'
+import deployments from './schema/deployments'
+import domainNames from './schema/domainNames'
+import features from './schema/features'
+import industries from './schema/industries'
+import languages from './schema/languages'
+import librariesAndFrameworks from './schema/librariesAndFrameworks'
+import licenseKeys from './schema/licenseKeys'
+import namespaces from './schema/namespaces'
+import platforms from './schema/platforms'
+import projects from './schema/projects'
+import reports from './schema/reports'
+import solutions from './schema/solutions'
+import tenants from './schema/tenants'
+import users from './schema/users'
 
 async function addCollectionsToDatabase (database) {
   return await database.addCollections({
-    contact: {
-      schema: contactSchema
+    accessKey: {
+      schema: accessKeys
     },
-    customer: {
-      schema: customerSchema
+    app: {
+      schema: apps
     },
-    estimate: {
-      schema: estimateSchema
+    chatbot: {
+      schema: chatbots
     },
-    fleet: {
-      schema: fleetSchema
+    client: {
+      schema: clients
     },
-    invoice: {
-      schema: invoiceSchema
+    deployment: {
+      schema: deployments
     },
-    job: {
-      schema: jobSchema
+    domainName: {
+      schema: domainNames
     },
-    location: {
-      schema: locationSchema
+    feature: {
+      schema: features
     },
-    professional: {
-      schema: professionalSchema
+    industry: {
+      schema: industries
     },
-    vehicle: {
-      schema: vehicleSchema
+    language: {
+      schema: languages
     },
-    workOrder: {
-      schema: workOrderSchema
+    libraryOrFramework: {
+      schema: librariesAndFrameworks
+    },
+    licenseKey: {
+      schema: licenseKeys
+    },
+    namespace: {
+      schema: namespaces
+    },
+    platform: {
+      schema: platforms
+    },
+    project: {
+      schema: projects
+    },
+    report: {
+      schema: reports
+    },
+    solution: {
+      schema: solutions
+    },
+    tenant: {
+      schema: tenants
+    },
+    user: {
+      schema: users
     },
   });
 }
@@ -55,7 +87,7 @@ export async function server () {
   addPouchPlugin(require('pouchdb-adapter-leveldb'));
 
   const rxdb = await createRxDatabase({
-    name: 'data/istrav.pro',
+    name: 'data/istrav.com',
     storage: getRxStoragePouch(leveldown)
   });
 
@@ -66,7 +98,7 @@ export async function browser () {
   let dexiePlugin = (await import('rxdb/plugins/dexie'));
 
   const rxdb = await createRxDatabase({
-    name: 'data/istrav.pro',
+    name: 'data/istrav.com',
     storage: dexiePlugin.getRxStorageDexie()
   });
 

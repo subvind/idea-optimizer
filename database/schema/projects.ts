@@ -1,5 +1,5 @@
 export default {
-  title: 'invoice schema',
+  title: 'project schema',
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -7,13 +7,13 @@ export default {
     id: {
       type: 'string',
     },
-    total: {
-      type: 'integer'
-    },
-    workOrder: {
-      ref: 'workOrder',
+    slug: {
       type: 'string'
-    }
+    },
+    idea: {
+      ref: 'idea',
+      type: 'string'
+    },
   },
-  required: ['id', 'workOrder', 'total']
+  required: ['id', 'slug', 'idea']
 }

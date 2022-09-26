@@ -1,5 +1,5 @@
 export default {
-  title: 'fleet schema',
+  title: 'namespace schema',
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -7,30 +7,41 @@ export default {
     id: {
       type: 'string',
     },
-    name: {
+    slug: {
       type: 'string'
     },
-    professionals: {
+    root: {
+      ref: 'client',
+      type: 'string'
+    },
+    clients: {
       type: 'array',
-      ref: 'professional',
+      ref: 'client',
       items: {
         type: 'string'
       }
     },
-    vehicles: {
+    ideas: {
       type: 'array',
-      ref: 'vehicle',
+      ref: 'idea',
       items: {
         type: 'string'
       }
     },
-    workOrders: {
+    accessKeys: {
       type: 'array',
-      ref: 'workOrder',
+      ref: 'accessKey',
+      items: {
+        type: 'string'
+      }
+    },
+    licenseKeys: {
+      type: 'array',
+      ref: 'licenseKey',
       items: {
         type: 'string'
       }
     },
   },
-  required: ['id', 'name']
+  required: ['id', 'slug', 'root']
 }
