@@ -18,5 +18,8 @@ export default {
       type: 'string'
     }
   },
-  required: ['id', 'slug', 'token', 'namespace']
+  required: ['id', 'slug', 'token', 'namespace'],
+  indexes: [
+    ['slug', 'namespace']
+  ]
 }

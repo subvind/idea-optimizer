@@ -7,13 +7,14 @@ export default {
     id: {
       type: 'string',
     },
+    slug: {
+      type: 'string',
+    },
     name: {
       type: 'string'
     },
-    website: { // slug
-      type: 'string'
-    },
-    url: {
+    domainName: {
+      ref: 'domainName',
       type: 'string'
     },
     idea: {
@@ -42,6 +43,9 @@ export default {
       }
     }
   },
-  required: ['id', 'name', 'website', 'url', 'idea'],
-  indexes: ['age']
+  required: ['id', 'slug', 'name', 'domainName', 'idea'],
+  indexes: [
+    ['slug', 'idea'],
+    ['domainName', 'idea']
+  ]
 }

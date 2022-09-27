@@ -22,5 +22,9 @@ export default {
       type: 'string'
     }
   },
-  required: ['id', 'firstName', 'lastName', 'namespace']
+  required: ['id', 'firstName', 'lastName', 'namespace'],
+  indexes: [
+    ['firstName', 'lastName', 'namespace'],
+    ['user', 'namespace']
+  ]
 }

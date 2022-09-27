@@ -1,18 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
+import namespaces from '../database/schema/namespaces';
 import { version } from '../package.json';
 
-export class FleetOptimizer {
+export class IdeaOptimizer {
   private rxdb: any = null;
-  private static instance: FleetOptimizer;
+  private static instance: IdeaOptimizer;
 
   private constructor() {}
 
-  public static getInstance(): FleetOptimizer {
-    if (!FleetOptimizer.instance) {
-      FleetOptimizer.instance = new FleetOptimizer();
+  public static getInstance(): IdeaOptimizer {
+    if (!IdeaOptimizer.instance) {
+      IdeaOptimizer.instance = new IdeaOptimizer();
     }
 
-    return FleetOptimizer.instance;
+    return IdeaOptimizer.instance;
   }
 
   public db(): Promise<any> {
@@ -39,7 +40,7 @@ export class FleetOptimizer {
     return this.rxdb
   }
 
-  calculate(fleet: any) {
+  calculate(idea: any) {
     let that = this
     return {
       turnByTurnDirections(vehicle: any, location: any) {
@@ -51,54 +52,66 @@ export class FleetOptimizer {
     }
   }
 
-  workOrder(number: number) {
+  namespace(slug: string) {
     let that = this
     return {
-      remove() {
-        return that.rxdb.workOrder.find({
-          selector: {
-            number: number
-          }
-        }).remove()
-      },
-      insert(options) {
-        let workOrderId = uuidv4() 
-        let estimate = that.rxdb.estimate.insert({
-          id: uuidv4(),
-          workOrderId: workOrderId
-        })
-        let job = that.rxdb.job.insert({
-          id: uuidv4(),
-          workOrderId: workOrderId
-        })
-        let invoice = that.rxdb.invoice.insert({
-          id: uuidv4(),
-          workOrderId: workOrderId
-        })
-
-        return that.rxdb.workOrder.insert({
+      insert: (options) => {
+        return that.rxdb.namespace.insert({
           ...options,
-          id: workOrderId,
-          number: number,
-          estimateId: estimate.id,
-          jobId: job.id,
-          invoiceId: invoice.id,
+          slug: slug,
+          id: uuidv4(),
         })
       }
     }
   }
 
-  fleets() {
-    return this.rxdb.fleet.find().exec()
+  idea(id: string, slug: string) {
+    let namespace = this.rxdb.namespace.findOne({
+      selector: {
+        slug: id
+      }
+    })
+
+    let that = this
+    return {
+      findOne: () => {
+        return that.rxdb.idea.findOne({
+          selector: {
+            slug: slug,
+            namespace: namespace.id,
+          }
+        }).exec()
+      },
+      remove: () => {
+        return that.rxdb.idea.find({
+          selector: {
+            slug: slug,
+            namespace: namespace.id,
+          }
+        }).remove()
+      },
+      insert: (options) => {
+        return that.rxdb.idea.insert({
+          ...options,
+          slug: slug,
+          namespace: namespace.id,
+          id: uuidv4(),
+        })
+      }
+    }
   }
-  locations() {
-    return this.rxdb.location.find().exec()
+
+  ideas() {
+    return this.rxdb.idea.find().exec()
   }
-  professionals() {
-    return this.rxdb.professional.find().exec()
+  platforms() {
+    return this.rxdb.platform.find().exec()
   }
-  vehicles() {
-    return this.rxdb.vehicle.find().exec()
+  tenants() {
+    return this.rxdb.tenant.find().exec()
+  }
+  chatbots() {
+    return this.rxdb.chatbot.find().exec()
   }
 
   version() {

@@ -7,6 +7,12 @@ export default {
     id: {
       type: 'string',
     },
+    slug: {
+      type: 'string',
+    },
+    name: {
+      type: 'string',
+    },
     secret: {
       type: 'string'
     },
@@ -21,5 +27,8 @@ export default {
       type: 'string'
     },
   },
-  required: ['id', 'secret', 'mac', 'expiry', 'namespace']
+  required: ['id', 'slug', 'name', 'secret', 'mac', 'expiry', 'namespace'],
+  indexes: [
+    ['slug', 'namespace']
+  ]
 }

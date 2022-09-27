@@ -39,5 +39,8 @@ export default {
       type: 'string'
     },
   },
-  required: ['id', 'createdAt', 'data', 'namespace']
+  required: ['id', 'createdAt', 'namespace'],
+  indexes: [
+    ['createdAt', 'namespace']
+  ]
 }

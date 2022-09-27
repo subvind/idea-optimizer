@@ -24,5 +24,10 @@ export default {
       }
     }
   },
-  required: ['id', 'username', 'email', 'firebase']
+  required: ['id', 'username', 'email', 'firebase'],
+  indexes: [
+    'username',
+    'email',
+    'firebase',
+  ]
 }

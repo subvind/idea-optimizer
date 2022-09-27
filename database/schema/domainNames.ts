@@ -15,5 +15,8 @@ export default {
       type: 'string'
     },
   },
-  required: ['id', 'tld', 'idea']
+  required: ['id', 'tld', 'idea'],
+  indexes: [
+    ['tld', 'idea']
+  ]
 }

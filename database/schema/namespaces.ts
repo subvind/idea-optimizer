@@ -43,5 +43,8 @@ export default {
       }
     },
   },
-  required: ['id', 'slug', 'root']
+  required: ['id', 'slug', 'root'],
+  indexes: [
+    'slug'
+  ]
 }

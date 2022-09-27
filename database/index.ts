@@ -8,6 +8,7 @@ import clients from './schema/clients'
 import deployments from './schema/deployments'
 import domainNames from './schema/domainNames'
 import features from './schema/features'
+import ideas from './schema/ideas'
 import industries from './schema/industries'
 import languages from './schema/languages'
 import librariesAndFrameworks from './schema/librariesAndFrameworks'
@@ -42,6 +43,9 @@ async function addCollectionsToDatabase (database) {
     },
     feature: {
       schema: features
+    },
+    idea: {
+      schema: ideas
     },
     industry: {
       schema: industries

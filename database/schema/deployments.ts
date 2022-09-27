@@ -7,6 +7,9 @@ export default {
     id: {
       type: 'string',
     },
+    slug: {
+      type: 'string'
+    },
     name: {
       type: 'string'
     },
@@ -46,5 +49,8 @@ export default {
       }
     },
   },
-  required: ['id', 'name', 'type', 'idea']
+  required: ['id', 'slug', 'name', 'type', 'idea'],
+  indexes: [
+    ['slug', 'idea'],
+  ]
 }
