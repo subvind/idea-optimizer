@@ -112,7 +112,7 @@ export default {
       }
     },
   },
-  required: ['id', 'slug', 'name', 'namespace'],
+  required: ['id', 'slug', 'name', 'description', 'namespace'],
   indexes: [
     ['slug', 'namespace']
   ]
