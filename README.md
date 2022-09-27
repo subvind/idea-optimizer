@@ -24,33 +24,19 @@ library tech:
 
 ### install
 ```bash
-# https://www.npmjs.com/package/fleet-optimizer
-npm i fleet-optimizer
+# https://www.npmjs.com/package/idea-optimizer
+npm i idea-optimizer
 ```
 
 ### about
 tests:
 ```bash
-fleet1 Expert Services
-vehicle1 SDF123
-location1 Austin, TX
+# 
 ```
 
 examples:
 ```bash
-# npm run examples:storedash
-```
-
-```bash
-# npm run examples:mrclean
-```
-
-```bash
-# npm run examples:hvacpro
-```
-
-```bash
-# npm run examples:trucking
+# npm run examples:start-idea
 ```
 
 ### istrav-couchdb

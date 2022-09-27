@@ -66,35 +66,41 @@ export class IdeaOptimizer {
   }
 
   idea(id: string, slug: string) {
-    let namespace = this.rxdb.namespace.findOne({
-      selector: {
-        slug: id
-      }
-    })
-
     let that = this
+    
+    async function namespace() {
+      return that.rxdb.namespace.findOne({
+        selector: {
+          slug: id
+        }
+      }).exec()
+    }
+
     return {
-      findOne: () => {
+      findOne: async () => {
+        let ns = await namespace()
         return that.rxdb.idea.findOne({
           selector: {
             slug: slug,
-            namespace: namespace.id,
+            namespace: ns.id,
           }
         }).exec()
       },
-      remove: () => {
+      remove: async () => {
+        let ns = await namespace()
         return that.rxdb.idea.find({
           selector: {
             slug: slug,
-            namespace: namespace.id,
+            namespace: ns.id,
           }
         }).remove()
       },
-      insert: (options) => {
+      insert: async (options) => {
+        let ns = await namespace()
         return that.rxdb.idea.insert({
           ...options,
           slug: slug,
-          namespace: namespace.id,
+          namespace: ns.id,
           id: uuidv4(),
         })
       }
