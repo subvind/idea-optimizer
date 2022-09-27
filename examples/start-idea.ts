@@ -8,6 +8,8 @@ console.log(`release: v${ideaOptimizer.version()}`)
 
 // example
 async function ideation (slug: string, options: any) {
+  let db = await ideaOptimizer.db()
+
   let ns = await ideaOptimizer.namespace(slug).insert({})
   console.log('namespace', ns.id)
 
@@ -18,15 +20,17 @@ async function ideation (slug: string, options: any) {
   console.log('findOne idea', f.name)
   
   let a = await ideaOptimizer.ideas()
-  a.forEach((value, index) => {
-    console.log(index, value.name, value.toJSON())
+  a.forEach(async (value, index) => {
+    let data = value.toJSON()
+    let vns = await db.namespace.findOne(value.namespace).exec()
+    data.namespace = vns.toJSON()
+    console.log(index, data)
   })
 }
 
 // required storage system
 (async function () {
   let database = await ideaOptimizer.database(com.database.server)
-  let db = await ideaOptimizer.db()
 
   ideation('istrav', { name: "isTrav" })
 })()
