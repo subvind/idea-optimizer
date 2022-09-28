@@ -10,10 +10,6 @@ export default {
     slug: {
       type: 'string'
     },
-    root: {
-      ref: 'client',
-      type: 'string'
-    },
     clients: {
       type: 'array',
       ref: 'client',
@@ -43,7 +39,7 @@ export default {
       }
     },
   },
-  required: ['id', 'slug', 'root'],
+  required: ['id', 'slug'],
   indexes: [
     'slug'
   ]
