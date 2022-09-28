@@ -10,6 +10,10 @@ export default {
     slug: {
       type: 'string'
     },
+    inviteOnly: {
+      default: false,
+      type: 'boolean'
+    },
     clients: {
       type: 'array',
       ref: 'client',
