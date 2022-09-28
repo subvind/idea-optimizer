@@ -1,5 +1,6 @@
 
-import { createRxDatabase } from 'rxdb';
+import { createRxDatabase, addRxPlugin } from 'rxdb';
+import { RxDBUpdatePlugin } from 'rxdb/plugins/update';
 
 import accessKeys from './schema/accessKeys'
 import apps from './schema/apps'
@@ -89,6 +90,8 @@ export async function server () {
   const leveldown = require('leveldown');
 
   addPouchPlugin(require('pouchdb-adapter-leveldb'));
+  
+  addRxPlugin(RxDBUpdatePlugin);
 
   const rxdb = await createRxDatabase({
     name: 'data/istrav.com',
@@ -100,6 +103,8 @@ export async function server () {
 
 export async function browser () {
   let dexiePlugin = (await import('rxdb/plugins/dexie'));
+
+  addRxPlugin(RxDBUpdatePlugin);
 
   const rxdb = await createRxDatabase({
     name: 'data/istrav.com',
