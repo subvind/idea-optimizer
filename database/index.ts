@@ -1,6 +1,6 @@
 
 import { createRxDatabase, addRxPlugin } from 'rxdb';
-import { RxDBUpdatePlugin } from 'rxdb/plugins/update';
+// import { RxDBUpdatePlugin } from 'rxdb/plugins/update';
 
 import accessKeys from './schema/accessKeys'
 import apps from './schema/apps'
@@ -86,6 +86,7 @@ async function addCollectionsToDatabase (database) {
 
 export async function server () {
   let { getRxStoragePouch, addPouchPlugin } = require('rxdb/plugins/pouchdb');
+  let { RxDBUpdatePlugin } = require('rxdb/plugins/update');
 
   const leveldown = require('leveldown');
 
@@ -103,6 +104,7 @@ export async function server () {
 
 export async function browser () {
   let dexiePlugin = (await import('rxdb/plugins/dexie'));
+  let RxDBUpdatePlugin: any = (await import('rxdb/plugins/update')).RxDBUpdatePlugin;
 
   addRxPlugin(RxDBUpdatePlugin);
 
